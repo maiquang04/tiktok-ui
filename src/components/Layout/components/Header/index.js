@@ -1,4 +1,4 @@
-import { Children, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -33,6 +33,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -214,10 +215,10 @@ function Header() {
                         onChange={handleMenuChange}
                     >
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
-                                src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/7310701075437191169.jpeg?lk3s=a5d48078&x-expires=1704848400&x-signature=59M4gm7TGJCqj0SaZzXJPIB0zxw%3D"
-                                alt="Nguyen Van A"
+                                src={images.avatar}
+                                alt="Girl"
                             />
                         ) : (
                             <>
