@@ -1,11 +1,6 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faPlus,
-    faEllipsisVertical,
-    faArrowRightFromBracket,
-} from '@fortawesome/free-solid-svg-icons';
-import { faLightbulb, faSun } from '@fortawesome/free-regular-svg-icons';
+import { faPlus, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 

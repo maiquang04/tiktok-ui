@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -13,16 +13,29 @@ import { SearchIcon } from '~/components/Icons';
 const cx = classNames.bind(styles);
 
 function Search() {
+    const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
+    const [showResult, setShowResult] = useState(true);
+
+    const inputRef = useRef();
 
     useEffect(() => {
-        setSearchResult([1, 1, 1, 1]);
+        setSearchResult([1, 1]);
     }, []);
+
+    const handleClear = () => {
+        setSearchValue('');
+        setSearchResult([]);
+        inputRef.current.focus();
+    };
+    const handleHideResult = () => {
+        setShowResult(false);
+    };
 
     return (
         <HeadlessTippy
             interactive={true}
-            visible={searchResult.length > 0}
+            visible={showResult && searchResult.length > 0}
             render={(attrs) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
@@ -34,16 +47,23 @@ function Search() {
                     </PopperWrapper>
                 </div>
             )}
+            onClickOutside={handleHideResult}
         >
             <div className={cx('search')}>
                 <input
+                    ref={inputRef}
+                    value={searchValue}
                     placeholder="Search accounts and videos"
                     spellCheck={false}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    onFocus={() => setShowResult(true)}
                 />
-                <button className={cx('clear')}>
-                    <FontAwesomeIcon icon={faCircleXmark} />
-                </button>
-                <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
+                {!!searchValue && (
+                    <button className={cx('clear')} onClick={handleClear}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
+                    </button>
+                )}
+                {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
                 <button className={cx('search-btn')}>
                     <SearchIcon />
                 </button>
