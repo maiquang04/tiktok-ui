@@ -10,7 +10,12 @@ import styles from './Menu.module.scss';
 const cx = classNames.bind(styles);
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({
+    children,
+    items = [],
+    hideOnClick = false,
+    onChange = defaultFn,
+}) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
@@ -39,6 +44,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             offset={[12, 12]}
             onHide={() => setHistory((prev) => [prev[0]])}
             // visible
+            hideOnClick={hideOnClick}
             delay={[0, 500]}
             placement="bottom-end"
             render={(attrs) => (
