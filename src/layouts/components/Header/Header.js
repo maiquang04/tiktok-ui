@@ -151,7 +151,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = true;
+    const currentUser = false;
 
     // Handle logic
     const handleMenuChange = (menuItem) => {
@@ -252,7 +252,9 @@ function Header() {
                             >
                                 Upload
                             </Button>
-                            <Button primary>Log in</Button>
+                            <Button outline to="/">
+                                Log in
+                            </Button>
                         </>
                     )}
                     <Menu
